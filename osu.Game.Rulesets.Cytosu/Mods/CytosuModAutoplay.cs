@@ -16,14 +16,8 @@ namespace osu.Game.Rulesets.Cytosu.Mods
 {
     public class CytosuModAutoplay : ModAutoplay, IApplicableToDrawableHitObject
     {
-        public override Score CreateReplayScore(IBeatmap beatmap, IReadOnlyList<Mod> mods) => new Score
-        {
-            ScoreInfo = new ScoreInfo
-            {
-                User = new User { Username = "Nora" },
-            },
-            Replay = new CytosuAutoGenerator(beatmap).Generate(),
-        };
+        public override ModReplayData CreateReplayData(IBeatmap beatmap, IReadOnlyList<Mod> mods)
+            => new ModReplayData(new CytosuAutoGenerator(beatmap).Generate(), new ModCreatedUser { Username = "Nora" });
 
         public void ApplyToDrawableHitObject(DrawableHitObject drawable)
         {

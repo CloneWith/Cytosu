@@ -18,7 +18,7 @@ using osu.Game.Rulesets.UI;
 namespace osu.Game.Rulesets.Cytosu.UI
 {
     [Cached]
-    public class CytosuPlayfield : Playfield
+    public partial class CytosuPlayfield : Playfield
     {
         private readonly JudgementContainer<DrawableCytosuJudgement> judgementLayer;
 
@@ -67,7 +67,7 @@ namespace osu.Game.Rulesets.Cytosu.UI
             judgementLayer.Add(explosion);
         }
 
-        private class DrawableJudgementPool : DrawablePool<DrawableCytosuJudgement>
+        private partial class DrawableJudgementPool : DrawablePool<DrawableCytosuJudgement>
         {
             private readonly HitResult result;
 

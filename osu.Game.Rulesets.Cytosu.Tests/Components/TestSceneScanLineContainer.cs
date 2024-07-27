@@ -10,7 +10,7 @@ using osu.Game.Tests.Visual;
 
 namespace osu.Game.Rulesets.Cytosu.Tests.Components
 {
-    public class TestSceneScanLine : OsuTestScene
+    public partial class TestSceneScanLine : OsuTestScene
     {
         private readonly NowPlayingOverlay np;
 

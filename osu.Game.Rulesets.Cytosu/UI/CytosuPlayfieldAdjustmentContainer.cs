@@ -8,7 +8,7 @@ using osuTK;
 
 namespace osu.Game.Rulesets.Cytosu.UI
 {
-    public class CytosuPlayfieldAdjustmentContainer : PlayfieldAdjustmentContainer
+    public partial class CytosuPlayfieldAdjustmentContainer : PlayfieldAdjustmentContainer
     {
         protected override Container<Drawable> Content => content;
         private readonly Container content;
@@ -33,7 +33,7 @@ namespace osu.Game.Rulesets.Cytosu.UI
             };
         }
 
-        private class ScalingContainer : Container
+        private partial class ScalingContainer : Container
         {
             protected override void Update()
             {

@@ -9,7 +9,7 @@ using osuTK.Graphics;
 
 namespace osu.Game.Rulesets.Cytosu.UI
 {
-    public class PlayfieldBorder : CompositeDrawable
+    public partial class PlayfieldBorder : CompositeDrawable
     {
         public PlayfieldBorder()
         {
@@ -60,7 +60,7 @@ namespace osu.Game.Rulesets.Cytosu.UI
             };
         }
 
-        private class Line : Box
+        private partial class Line : Box
         {
             private readonly Direction direction;
 

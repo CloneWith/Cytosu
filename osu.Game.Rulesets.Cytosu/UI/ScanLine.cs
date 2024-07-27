@@ -13,7 +13,7 @@ using osuTK.Graphics;
 
 namespace osu.Game.Rulesets.Cytosu.UI
 {
-    public class ScanLine : BeatSyncedContainer
+    public partial class ScanLine : BeatSyncedContainer
     {
         private readonly Box scanLine;
 

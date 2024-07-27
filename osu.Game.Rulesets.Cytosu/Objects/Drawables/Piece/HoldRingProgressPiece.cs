@@ -12,7 +12,7 @@ using osuTK.Graphics;
 
 namespace osu.Game.Rulesets.Cytosu.Objects.Drawables.Piece
 {
-    public class HoldRingProgressPiece : CircularContainer
+    public partial class HoldRingProgressPiece : CircularContainer
     {
         public CircularProgress AutoProgress { get; private set; }
         public CircularProgress Progress { get; private set; }
@@ -39,7 +39,7 @@ namespace osu.Game.Rulesets.Cytosu.Objects.Drawables.Piece
                     Origin = Anchor.Centre,
                     InnerRadius = 2f,
                     Size = new Vector2(35),
-                    Current = { Value = 0 },
+                    Progress = 0,
                     Colour = Color4.Black,
                     Alpha = 0.45f
                 },
@@ -49,7 +49,7 @@ namespace osu.Game.Rulesets.Cytosu.Objects.Drawables.Piece
                     Origin = Anchor.Centre,
                     InnerRadius = 2f,
                     Size = new Vector2(35),
-                    Current = { Value = 0 },
+                    Progress = 0,
                     Colour = colour.YellowDark
                 }
             });

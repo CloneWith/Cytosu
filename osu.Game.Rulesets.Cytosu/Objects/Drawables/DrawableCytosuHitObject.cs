@@ -5,7 +5,7 @@ using osu.Game.Rulesets.Objects.Drawables;
 
 namespace osu.Game.Rulesets.Cytosu.Objects.Drawables
 {
-    public class DrawableCytosuHitObject : DrawableHitObject<CytosuHitObject>
+    public partial class DrawableCytosuHitObject : DrawableHitObject<CytosuHitObject>
     {
         public override bool HandlePositionalInput => true;
 

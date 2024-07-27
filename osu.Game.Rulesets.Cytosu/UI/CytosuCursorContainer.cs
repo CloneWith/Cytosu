@@ -9,7 +9,7 @@ using osu.Game.Rulesets.UI;
 
 namespace osu.Game.Rulesets.Cytosu.UI
 {
-    public class CytosuCursorContainer : GameplayCursorContainer
+    public partial class CytosuCursorContainer : GameplayCursorContainer
     {
         public override bool HandlePositionalInput => true;
 

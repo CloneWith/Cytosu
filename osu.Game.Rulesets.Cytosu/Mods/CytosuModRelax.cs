@@ -1,5 +1,7 @@
-﻿using osu.Game.Rulesets.Cytosu.Objects;
+﻿using osu.Framework.Localisation;
+using osu.Game.Rulesets.Cytosu.Objects;
 using osu.Game.Rulesets.Cytosu.Objects.Drawables;
+using osu.Game.Rulesets.Cytosu.UI;
 using osu.Game.Rulesets.Mods;
 using osu.Game.Rulesets.Objects.Types;
 using osu.Game.Rulesets.UI;
@@ -13,28 +15,28 @@ namespace osu.Game.Rulesets.Cytosu.Mods
 {
     public class CytosuModRelax : ModRelax, IUpdatableByPlayfield, IApplicableToDrawableRuleset<CytosuHitObject>, IApplicableToPlayer
     {
-        private CytosuInputManager inputManager;
         private ReplayState<CytosuAction> state;
+        private DrawableCytosuRuleset drawableRuleset = null!;
 
         private bool hasReplay;
         private bool isDownState;
 
-        public override string Description => "Too lazy to click your keyboard, eh?";
+        public override LocalisableString Description => @"Too lazy to click your keyboard, eh?";
 
         public void ApplyToDrawableRuleset(DrawableRuleset<CytosuHitObject> drawableRuleset)
         {
-            inputManager = (CytosuInputManager)drawableRuleset.KeyBindingInputManager;
+            this.drawableRuleset = (DrawableCytosuRuleset)drawableRuleset;
         }
 
         public void ApplyToPlayer(Player player)
         {
-            if (inputManager.ReplayInputHandler != null)
+            if (drawableRuleset.HasReplayLoaded.Value)
             {
                 hasReplay = true;
                 return;
             }
 
-            inputManager.AllowUserPresses = false;
+            // inputManager.AllowUserPresses = false;
         }
 
         public void Update(Playfield playfield)
@@ -102,7 +104,7 @@ namespace osu.Game.Rulesets.Cytosu.Mods
                 if (down)
                     state.PressedActions.Add(CytosuAction.Action1);
 
-                state?.Apply(inputManager.CurrentState, inputManager);
+                // state?.Apply(inputManager.CurrentState, inputManager);
             }
         }
     }

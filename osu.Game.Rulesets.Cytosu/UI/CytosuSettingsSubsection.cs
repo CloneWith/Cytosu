@@ -9,7 +9,7 @@ using osu.Game.Rulesets.Cytosu.Configurations;
 
 namespace osu.Game.Rulesets.Cytosu.UI
 {
-    public class CytosuSettingsSubsection : RulesetSettingsSubsection
+    public partial class CytosuSettingsSubsection : RulesetSettingsSubsection
     {
         private readonly Ruleset ruleset;
 
