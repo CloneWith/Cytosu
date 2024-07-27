@@ -10,7 +10,7 @@ namespace osu.Game.Rulesets.Cytosu.Judgements
     {
         public override HitResult MaxResult => HitResult.Great;
 
-        protected new int ToNumericResult(HitResult result)
+        protected int ToNumericResult(HitResult result)
         {
             return result switch
             {
