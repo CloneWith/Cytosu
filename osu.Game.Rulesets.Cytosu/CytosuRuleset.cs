@@ -36,8 +36,8 @@ namespace osu.Game.Rulesets.Cytosu
         public override IBeatmapConverter CreateBeatmapConverter(IBeatmap beatmap) =>
             new CytosuBeatmapConverter(beatmap, this);
 
-        public override DifficultyCalculator CreateDifficultyCalculator(WorkingBeatmap beatmap) =>
-            new CytosuDifficultyCalculator(this, beatmap);
+        public override DifficultyCalculator CreateDifficultyCalculator(IWorkingBeatmap beatmap) =>
+            new CytosuDifficultyCalculator(this.RulesetInfo, beatmap);
 
         public override IConvertibleReplayFrame CreateConvertibleReplayFrame() => new CytosuReplayFrame();
 

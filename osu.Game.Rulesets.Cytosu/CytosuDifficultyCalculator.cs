@@ -14,7 +14,7 @@ namespace osu.Game.Rulesets.Cytosu
 {
     public class CytosuDifficultyCalculator : DifficultyCalculator
     {
-        public CytosuDifficultyCalculator(Ruleset ruleset, WorkingBeatmap beatmap)
+        public CytosuDifficultyCalculator(IRulesetInfo ruleset, IWorkingBeatmap beatmap)
             : base(ruleset, beatmap)
         {
         }
