@@ -9,7 +9,7 @@ using osu.Game.Graphics;
 
 namespace osu.Game.Rulesets.Cytosu.Objects.Drawables.Piece
 {
-    public class BodyPiece : CompositeDrawable
+    public partial class BodyPiece : CompositeDrawable
     {
         private readonly Box innerBox;
 

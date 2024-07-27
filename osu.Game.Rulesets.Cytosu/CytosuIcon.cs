@@ -7,7 +7,7 @@ using osu.Framework.Graphics.Sprites;
 
 namespace osu.Game.Rulesets.Cytosu
 {
-    public class CytosuIcon : Container
+    public partial class CytosuIcon : Container
     {
         public CytosuIcon()
         {

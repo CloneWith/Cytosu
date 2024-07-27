@@ -9,7 +9,7 @@ using osuTK.Graphics;
 
 namespace osu.Game.Rulesets.Cytosu.Objects.Drawables.Piece
 {
-    public class RingPiece : CompositeDrawable
+    public partial class RingPiece : CompositeDrawable
     {
         public const float RING_THICKNESS = 12f;
 

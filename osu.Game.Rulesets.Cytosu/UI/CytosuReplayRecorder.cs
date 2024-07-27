@@ -11,7 +11,7 @@ using osuTK;
 
 namespace osu.Game.Rulesets.Cytosu.UI
 {
-    public class CytosuReplayRecorder : ReplayRecorder<CytosuAction>
+    public partial class CytosuReplayRecorder : ReplayRecorder<CytosuAction>
     {
         public CytosuReplayRecorder(Score score)
             : base(score)

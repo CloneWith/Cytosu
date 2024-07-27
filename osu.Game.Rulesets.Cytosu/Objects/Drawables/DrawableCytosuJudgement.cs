@@ -14,12 +14,13 @@ using osuTK;
 
 namespace osu.Game.Rulesets.Cytosu.Objects.Drawables
 {
-    public class DrawableCytosuJudgement : DrawableJudgement
+    public partial class DrawableCytosuJudgement : DrawableJudgement
     {
         [Resolved]
         private OsuColour colours { get; set; }
 
         private OsuSpriteText judgementText;
+        public DrawableHitObject JudgedObject { get; private set; }
 
         public DrawableCytosuJudgement(JudgementResult result, DrawableCytosuHitObject judgedObject)
             : base(result, judgedObject)

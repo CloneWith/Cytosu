@@ -16,7 +16,7 @@ using osuTK;
 
 namespace osu.Game.Rulesets.Cytosu.Objects.Drawables
 {
-    public class DrawableHold : DrawableCytosuHitObject
+    public partial class DrawableHold : DrawableCytosuHitObject
     {
         public Drawable RingPiece;
         public Drawable BodyPiece;
@@ -93,7 +93,7 @@ namespace osu.Game.Rulesets.Cytosu.Objects.Drawables
                     holdDuration += Time.Elapsed;
 
                     RingProgressPiece.ScaleTo(2, HitObject.TimePreempt, Easing.OutQuint);
-                    RingProgressPiece.Progress.Current.Value = progression;
+                    RingProgressPiece.Progress.Progress = progression;
                 }
                 else
                 {
@@ -137,7 +137,7 @@ namespace osu.Game.Rulesets.Cytosu.Objects.Drawables
                 BodyPiece.FadeIn(Math.Min(HitObject.TimeFadeIn * 2, HitObject.TimePreempt));
                 BodyPiece.ScaleTo(1f, HitObject.TimePreempt);
 
-                RingProgressPiece.AutoProgress.FillTo(1, Math.Min(HitObject.TimeFadeIn * 2, HitObject.TimePreempt));
+                RingProgressPiece.AutoProgress.Progress = Math.Min(HitObject.TimeFadeIn * 2, HitObject.TimePreempt);
             }
         }
 

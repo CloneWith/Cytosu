@@ -19,7 +19,7 @@ using osuTK;
 namespace osu.Game.Rulesets.Cytosu.UI
 {
     [Cached]
-    public class DrawableCytosuRuleset : DrawableRuleset<CytosuHitObject>
+    public partial class DrawableCytosuRuleset : DrawableRuleset<CytosuHitObject>
     {
         public DrawableCytosuRuleset(CytosuRuleset ruleset, IBeatmap beatmap, IReadOnlyList<Mod> mods = null)
             : base(ruleset, beatmap, mods)

@@ -16,7 +16,7 @@ using osuTK;
 
 namespace osu.Game.Rulesets.Cytosu.Objects.Drawables
 {
-    public class DrawableHitCircle : DrawableCytosuHitObject
+    public partial class DrawableHitCircle : DrawableCytosuHitObject
     {
         public HitReceptor HitArea;
         public Drawable RingPiece;
@@ -104,10 +104,10 @@ namespace osu.Game.Rulesets.Cytosu.Objects.Drawables
             if (!userTriggered)
             {
                 if (ShouldPerfectlyJudged && timeOffset > 0)
-                    ApplyResult(r => r.Type = HitResult.Great);
+                    ApplyMaxResult();
 
                 if (!HitObject.HitWindows.CanBeHit(timeOffset))
-                    ApplyResult(r => r.Type = HitResult.Miss);
+                    ApplyMinResult();
 
                 return;
             }
@@ -116,7 +116,7 @@ namespace osu.Game.Rulesets.Cytosu.Objects.Drawables
             if (result == HitResult.None || result == HitResult.Miss && Time.Current < HitObject.StartTime)
                 return;
 
-            ApplyResult(r => r.Type = result);
+            ApplyResult(result);
         }
 
         protected override void UpdateInitialTransforms()
@@ -164,7 +164,7 @@ namespace osu.Game.Rulesets.Cytosu.Objects.Drawables
             }
         }
 
-        public class HitReceptor : CompositeDrawable, IKeyBindingHandler<CytosuAction>
+        public partial class HitReceptor : CompositeDrawable, IKeyBindingHandler<CytosuAction>
         {
             public override bool HandlePositionalInput => true;
 

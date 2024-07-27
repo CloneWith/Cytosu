@@ -34,7 +34,7 @@ namespace osu.Game.Rulesets.Cytosu.Replays
             }
         }
 
-        public override void CollectPendingInputs(List<IInput> inputs)
+        protected override void CollectReplayInputs(List<IInput> inputs)
         {
             inputs.Add(new MousePositionAbsoluteInput { Position = GamefieldToScreenSpace(Position ?? Vector2.Zero) });
             inputs.Add(new ReplayState<CytosuAction> { PressedActions = CurrentFrame?.Actions ?? new List<CytosuAction>() });

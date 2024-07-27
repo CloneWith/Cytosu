@@ -9,7 +9,7 @@ using osu.Game.Rulesets.UI;
 
 namespace osu.Game.Rulesets.Cytosu
 {
-    public class CytosuInputManager : RulesetInputManager<CytosuAction>
+    public partial class CytosuInputManager : RulesetInputManager<CytosuAction>
     {
         public IEnumerable<CytosuAction> PressedActions => KeyBindingContainer.PressedActions;
 
@@ -35,7 +35,7 @@ namespace osu.Game.Rulesets.Cytosu
             return base.Handle(e);
         }
 
-        private class CytosuKeyBindingContainer : RulesetKeyBindingContainer
+        private partial class CytosuKeyBindingContainer : RulesetKeyBindingContainer
         {
             public bool AllowUserPresses = true;
 

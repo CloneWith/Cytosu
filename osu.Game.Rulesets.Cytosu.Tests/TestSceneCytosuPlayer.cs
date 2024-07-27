@@ -7,7 +7,7 @@ using osu.Game.Tests.Visual;
 namespace osu.Game.Rulesets.Cytosu.Tests
 {
     [TestFixture]
-    public class TestSceneCytosuPlayer : PlayerTestScene
+    public partial class TestSceneCytosuPlayer : PlayerTestScene
     {
         protected override Ruleset CreatePlayerRuleset() => new CytosuRuleset();
     }

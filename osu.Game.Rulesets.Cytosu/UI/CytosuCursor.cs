@@ -10,7 +10,7 @@ using osuTK.Graphics;
 
 namespace osu.Game.Rulesets.Cytosu.UI
 {
-    public class CytosuCursor : CompositeDrawable
+    public partial class CytosuCursor : CompositeDrawable
     {
         private const float default_size = 20;
 
