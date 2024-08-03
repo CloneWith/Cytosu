@@ -113,7 +113,9 @@ namespace osu.Game.Rulesets.Cytosu.Objects.Drawables
 
             ApplyResult(result =>
             {
-                if (progression >= .9)
+                if (progression >= .95)
+                    result.Type = HitResult.Perfect;
+                else if (progression >= .9)
                     result.Type = HitResult.Great;
                 else if (progression >= .75)
                     result.Type = HitResult.Good;

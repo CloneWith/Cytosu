@@ -8,7 +8,7 @@ namespace osu.Game.Rulesets.Cytosu.Judgements
 {
     public class CytosuJudgement : Judgement
     {
-        public override HitResult MaxResult => HitResult.Great;
+        public override HitResult MaxResult => HitResult.Perfect;
 
         protected int ToNumericResult(HitResult result)
         {
@@ -17,6 +17,7 @@ namespace osu.Game.Rulesets.Cytosu.Judgements
                 HitResult.Meh => 50,
                 HitResult.Good => 100,
                 HitResult.Great => 300,
+                HitResult.Perfect => 300,
                 _ => 0
             };
         }

@@ -43,8 +43,7 @@ namespace osu.Game.Rulesets.Cytosu.Objects.Drawables
                 {
                     Anchor = Anchor.Centre,
                     Origin = Anchor.Centre,
-                    Text = Result.Type.GetDescription().ToUpperInvariant(),
-                    Font = OsuFont.Numeric.With(size: 20),
+                    Font = OsuFont.Torus.With(size: 20, weight: FontWeight.SemiBold),
                     Colour = colours.ForHitResult(Result.Type),
                     Scale = new Vector2(0.7f),
                 }
@@ -53,15 +52,19 @@ namespace osu.Game.Rulesets.Cytosu.Objects.Drawables
             switch (Result.Type)
             {
                 case HitResult.Meh:
-                    judgementText.Text = "Bad";
+                    judgementText.Text = "BAD";
                     break;
 
                 case HitResult.Good:
-                    judgementText.Text = "Good";
+                    judgementText.Text = "GOOD";
                     break;
 
                 case HitResult.Great:
-                    judgementText.Text = "Perfect";
+                    judgementText.Text = "GREAT";
+                    break;
+
+                case HitResult.Perfect:
+                    judgementText.Text = "PERFECT";
                     break;
             }
         }

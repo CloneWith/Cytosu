@@ -90,7 +90,8 @@ namespace osu.Game.Rulesets.Cytosu
             {
                 HitResult.Meh,
                 HitResult.Good,
-                HitResult.Great
+                HitResult.Great,
+                HitResult.Perfect,
             };
         }
 

@@ -9,6 +9,7 @@ namespace osu.Game.Rulesets.Cytosu.Scoring
     {
         private static readonly DifficultyRange[] cytosu_ranges =
         {
+            new DifficultyRange(HitResult.Perfect, 22.4D, 19.4D, 13.9D),
             new DifficultyRange(HitResult.Great, 80, 50, 20),
             new DifficultyRange(HitResult.Good, 140, 100, 60),
             new DifficultyRange(HitResult.Meh, 200, 150, 100),
@@ -19,6 +20,7 @@ namespace osu.Game.Rulesets.Cytosu.Scoring
         {
             switch (result)
             {
+                case HitResult.Perfect:
                 case HitResult.Great:
                 case HitResult.Good:
                 case HitResult.Meh:
