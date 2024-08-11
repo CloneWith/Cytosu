@@ -2,9 +2,9 @@
 // See the LICENCE file in the repository root for full licence text.
 
 using osu.Framework.Allocation;
-using osu.Framework.Extensions;
 using osu.Framework.Graphics;
 using osu.Framework.Graphics.Containers;
+using osu.Game.Configuration;
 using osu.Game.Graphics;
 using osu.Game.Graphics.Sprites;
 using osu.Game.Rulesets.Judgements;
@@ -21,6 +21,13 @@ namespace osu.Game.Rulesets.Cytosu.Objects.Drawables
 
         private OsuSpriteText judgementText;
         public DrawableHitObject JudgedObject { get; private set; }
+
+        internal SkinnableLighting Lighting { get; private set; } = null!;
+
+        [Resolved]
+        private OsuConfigManager config { get; set; } = null!;
+
+        private Vector2 screenSpacePosition;
 
         public DrawableCytosuJudgement(JudgementResult result, DrawableCytosuHitObject judgedObject)
             : base(result, judgedObject)
@@ -48,6 +55,15 @@ namespace osu.Game.Rulesets.Cytosu.Objects.Drawables
                     Scale = new Vector2(0.7f),
                 }
             };
+
+            AddInternal(Lighting = new SkinnableLighting
+            {
+                Anchor = Anchor.Centre,
+                Origin = Anchor.Centre,
+                Blending = BlendingParameters.Additive,
+                Depth = float.MaxValue,
+                Alpha = 0
+            });
 
             switch (Result.Type)
             {

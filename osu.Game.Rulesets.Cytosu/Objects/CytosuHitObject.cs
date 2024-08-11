@@ -16,6 +16,7 @@ namespace osu.Game.Rulesets.Cytosu.Objects
 {
     public abstract class CytosuHitObject : HitObject, IHasPosition
     {
+        // TODO: Change with CS
         public const float CIRCLE_RADIUS = 45;
 
         public double TimePreempt = 600;
