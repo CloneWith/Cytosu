@@ -3,7 +3,6 @@
 
 using System;
 using osu.Game.Beatmaps;
-using osu.Game.Rulesets.Cytosu.Objects;
 
 namespace osu.Game.Rulesets.Cytosu.Utils
 {

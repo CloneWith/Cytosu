@@ -26,12 +26,12 @@ namespace osu.Game.Rulesets.Cytosu.UI
 
         public CytosuPlayfield()
         {
-            InternalChildren = new Drawable[]
-            {
+            InternalChildren =
+            [
                 new PlayfieldBorder
                 {
                     RelativeSizeAxes = Axes.Both,
-                    Depth = 3
+                    Depth = 3,
                 },
                 judgementLayer = new JudgementContainer<DrawableCytosuJudgement>
                 {
@@ -42,9 +42,9 @@ namespace osu.Game.Rulesets.Cytosu.UI
                 {
                     Origin = Anchor.Centre,
                     Anchor = Anchor.Centre,
-                    RelativeSizeAxes = Axes.Both
-                }
-            };
+                    RelativeSizeAxes = Axes.Both,
+                },
+            ];
 
             var hitWindows = new CytosuHitWindows();
             foreach (var result in Enum.GetValues(typeof(HitResult)).OfType<HitResult>().Where(r => r > HitResult.None && hitWindows.IsHitResultAllowed(r)))
@@ -67,16 +67,8 @@ namespace osu.Game.Rulesets.Cytosu.UI
             judgementLayer.Add(explosion);
         }
 
-        private partial class DrawableJudgementPool : DrawablePool<DrawableCytosuJudgement>
+        private partial class DrawableJudgementPool(HitResult result) : DrawablePool<DrawableCytosuJudgement>(10)
         {
-            private readonly HitResult result;
-
-            public DrawableJudgementPool(HitResult result)
-                : base(10)
-            {
-                this.result = result;
-            }
-
             protected override DrawableCytosuJudgement CreateNewDrawable()
             {
                 var judgement = base.CreateNewDrawable();

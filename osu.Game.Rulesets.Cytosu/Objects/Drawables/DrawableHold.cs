@@ -16,16 +16,13 @@ using osuTK;
 
 namespace osu.Game.Rulesets.Cytosu.Objects.Drawables
 {
-    public partial class DrawableHold : DrawableCytosuHitObject
+    public partial class DrawableHold(CytosuHitObject hitObject) : DrawableCytosuHitObject(hitObject)
     {
-        public Drawable RingPiece;
-        public Drawable BodyPiece;
-        public HoldRingProgressPiece RingProgressPiece;
+        private Drawable ringPiece = null!;
+        private Drawable bodyPiece = null!;
+        private HoldRingProgressPiece ringProgressPiece = null!;
 
         private readonly IBindable<Vector2> positionBindable = new Bindable<Vector2>();
-
-        public DrawableHold(CytosuHitObject hitObject)
-            : base(hitObject) { }
 
         [BackgroundDependencyLoader]
         private void load()
@@ -33,36 +30,35 @@ namespace osu.Game.Rulesets.Cytosu.Objects.Drawables
             Origin = Anchor.Centre;
             Position = HitObject.Position;
 
-            AddRangeInternal(new Drawable[]
-            {
+            AddRangeInternal([
                 new Container
                 {
                     RelativeSizeAxes = Axes.Both,
                     Origin = Anchor.Centre,
                     Anchor = Anchor.Centre,
                     Scale = new Vector2(0.75f),
-                    Children = new[]
-                    {
+                    Children =
+                    [
                         new Container
                         {
                             RelativeSizeAxes = Axes.Both,
                             Anchor = Anchor.Centre,
                             Origin = Anchor.Centre,
-                            Margin = new MarginPadding(Piece.RingPiece.RING_THICKNESS),
-                            Child = BodyPiece = new HoldBodyPiece
+                            Margin = new MarginPadding(RingPiece.RING_THICKNESS),
+                            Child = bodyPiece = new HoldBodyPiece
                             {
                                 Alpha = 0,
-                                Scale = Vector2.Zero
+                                Scale = Vector2.Zero,
                             },
                         },
-                        RingProgressPiece = new HoldRingProgressPiece
+                        ringProgressPiece = new HoldRingProgressPiece
                         {
                             RelativeSizeAxes = Axes.Both,
                         },
-                        RingPiece = new RingPiece()
-                    }
-                }
-            });
+                        ringPiece = new RingPiece(),
+                    ],
+                },
+            ]);
 
             Size = new Vector2(CytosuHitObject.CIRCLE_RADIUS * 2);
 
@@ -73,7 +69,7 @@ namespace osu.Game.Rulesets.Cytosu.Objects.Drawables
         private readonly Bindable<bool> isActivated = new BindableBool();
         private double holdDuration;
 
-        private CytosuInputManager InputManager => GetContainingInputManager() as CytosuInputManager;
+        private CytosuInputManager InputManager => (GetContainingInputManager() as CytosuInputManager)!;
 
         protected override void Update()
         {
@@ -92,12 +88,12 @@ namespace osu.Game.Rulesets.Cytosu.Objects.Drawables
                     double progression = holdDuration / ((IHasDuration)HitObject).Duration;
                     holdDuration += Time.Elapsed;
 
-                    RingProgressPiece.ScaleTo(2, HitObject.TimePreempt, Easing.OutQuint);
-                    RingProgressPiece.Progress.Progress = progression;
+                    ringProgressPiece.ScaleTo(2, HitObject.TimePreempt, Easing.OutQuint);
+                    ringProgressPiece.Progress.Progress = progression;
                 }
                 else
                 {
-                    RingProgressPiece.ScaleTo(1, HitObject.TimePreempt, Easing.OutQuint);
+                    ringProgressPiece.ScaleTo(1, HitObject.TimePreempt, Easing.OutQuint);
                 }
             }
         }
@@ -134,12 +130,12 @@ namespace osu.Game.Rulesets.Cytosu.Objects.Drawables
             {
                 this.ScaleTo(0.5f).Then().ScaleTo(1, HitObject.TimePreempt, Easing.OutSine);
 
-                RingPiece.FadeInFromZero(HitObject.TimePreempt / 2);
+                ringPiece.FadeInFromZero(HitObject.TimePreempt / 2);
 
-                BodyPiece.FadeIn(Math.Min(HitObject.TimeFadeIn * 2, HitObject.TimePreempt));
-                BodyPiece.ScaleTo(1f, HitObject.TimePreempt);
+                bodyPiece.FadeIn(Math.Min(HitObject.TimeFadeIn * 2, HitObject.TimePreempt));
+                bodyPiece.ScaleTo(1f, HitObject.TimePreempt);
 
-                RingProgressPiece.AutoProgress.Progress = Math.Min(HitObject.TimeFadeIn * 2, HitObject.TimePreempt);
+                ringProgressPiece.AutoProgress.Progress = Math.Min(HitObject.TimeFadeIn * 2, HitObject.TimePreempt);
             }
         }
 
@@ -156,11 +152,11 @@ namespace osu.Game.Rulesets.Cytosu.Objects.Drawables
                     break;
 
                 case ArmedState.Hit:
-                    RingPiece
+                    ringPiece
                         .ScaleTo(1.5f, 200, Easing.InCubic)
                         .FadeOut(200);
-                    BodyPiece.FadeOut(200);
-                    RingProgressPiece.FadeOut();
+                    bodyPiece.FadeOut(200);
+                    ringProgressPiece.FadeOut();
                     this.Delay(200).Expire();
 
                     break;

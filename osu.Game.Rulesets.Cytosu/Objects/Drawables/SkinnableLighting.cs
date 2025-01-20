@@ -8,15 +8,10 @@ using osuTK.Graphics;
 
 namespace osu.Game.Rulesets.Cytosu.Objects.Drawables
 {
-    internal partial class SkinnableLighting : SkinnableSprite
+    internal partial class SkinnableLighting() : SkinnableSprite("lighting")
     {
         private DrawableCytosuJudgement? targetJudgement;
         private JudgementResult? targetResult;
-
-        public SkinnableLighting()
-            : base("lighting")
-        {
-        }
 
         protected override void SkinChanged(ISkinSource skin)
         {
@@ -25,7 +20,7 @@ namespace osu.Game.Rulesets.Cytosu.Objects.Drawables
         }
 
         /// <summary>
-        /// Updates the lighting colour from a given hitobject and result.
+        /// Updates the lighting colour from a given hit object and result.
         /// </summary>
         /// <param name="targetJudgement">The <see cref="DrawableHitObject"/> that's been judged.</param>
         /// <param name="targetResult">The <see cref="JudgementResult"/> that <paramref name="targetJudgement"/> was judged with.</param>

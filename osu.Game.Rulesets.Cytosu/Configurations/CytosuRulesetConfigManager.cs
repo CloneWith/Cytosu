@@ -6,13 +6,9 @@ using osu.Game.Rulesets.Configuration;
 
 namespace osu.Game.Rulesets.Cytosu.Configurations
 {
-    public class CytosuRulesetConfigManager : RulesetConfigManager<CytosuRulesetSetting>
+    public class CytosuRulesetConfigManager(SettingsStore? settings, RulesetInfo ruleset, int? variant = null)
+        : RulesetConfigManager<CytosuRulesetSetting>(settings, ruleset, variant)
     {
-        public CytosuRulesetConfigManager(SettingsStore settings, RulesetInfo ruleset, int? variant = null)
-            : base(settings, ruleset, variant)
-        {
-        }
-
         protected override void InitialiseDefaults()
         {
             base.InitialiseDefaults();

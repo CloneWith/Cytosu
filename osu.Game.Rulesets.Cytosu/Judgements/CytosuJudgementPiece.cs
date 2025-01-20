@@ -11,156 +11,158 @@ using osu.Game.Rulesets.Judgements;
 using osu.Game.Rulesets.Scoring;
 using osuTK;
 
-namespace osu.Game.Rulesets.Cytosu.Judgements;
-
-public partial class CytosuJudgementPiece : TextJudgementPiece, IAnimatableJudgement
+namespace osu.Game.Rulesets.Cytosu.Judgements
 {
-    private RingExplosion? ringExplosion;
-
-    [Resolved] private OsuColour colours { get; set; } = null!;
-
-    public CytosuJudgementPiece(HitResult result)
-        : base(result)
+    public partial class CytosuJudgementPiece : TextJudgementPiece, IAnimatableJudgement
     {
-        AutoSizeAxes = Axes.Both;
+        private RingExplosion? ringExplosion;
 
-        Origin = Anchor.Centre;
-    }
+        [Resolved]
+        private OsuColour colours { get; set; } = null!;
 
-    [BackgroundDependencyLoader]
-    private void load()
-    {
-        if (Result.IsHit())
+        public CytosuJudgementPiece(HitResult result)
+            : base(result)
         {
-            AddInternal(ringExplosion = new RingExplosion(Result)
-            {
-                Colour = colours.ForHitResult(Result),
-            });
-        }
-    }
+            AutoSizeAxes = Axes.Both;
 
-    protected override SpriteText CreateJudgementText() =>
-        new OsuSpriteText
-        {
-            Anchor = Anchor.Centre,
-            Origin = Anchor.Centre,
-            Blending = BlendingParameters.Additive,
-            Spacing = new Vector2(5, 0),
-            Font = OsuFont.Default.With(size: 20, weight: FontWeight.Bold),
-        };
-
-    /// <summary>
-    /// Plays the default animation for this judgement piece.
-    /// </summary>
-    /// <remarks>
-    /// The base implementation only handles fade (for all result types) and misses.
-    /// Individual rulesets are recommended to implement their appropriate hit animations.
-    /// </remarks>
-    public virtual void PlayAnimation()
-    {
-        if (Result == HitResult.IgnoreMiss || Result == HitResult.LargeTickMiss)
-        {
-            this.RotateTo(-45);
-            this.ScaleTo(1.6f);
-            this.ScaleTo(1.2f, 100, Easing.In);
-
-            this.FadeOutFromOne(400);
-        }
-        else if (Result.IsMiss())
-        {
-            this.FadeOutFromOne(800);
-
-            this.ScaleTo(1.6f);
-            this.ScaleTo(1, 100, Easing.In);
-
-            this.MoveTo(Vector2.Zero);
-            this.MoveToOffset(new Vector2(0, 100), 800, Easing.InQuint);
-
-            this.RotateTo(0);
-            this.RotateTo(40, 800, Easing.InQuint);
-        }
-        else
-        {
-            this.FadeOutFromOne(800);
-
-            JudgementText
-                .FadeInFromZero(300, Easing.OutQuint)
-                .ScaleTo(Vector2.One)
-                .ScaleTo(new Vector2(1.2f), 1800, Easing.OutQuint);
-        }
-
-        ringExplosion?.PlayAnimation();
-    }
-
-    public Drawable? GetAboveHitObjectsProxiedContent() => JudgementText.CreateProxy();
-
-    private partial class RingExplosion : CompositeDrawable
-    {
-        private readonly float travel = 52;
-
-        public RingExplosion(HitResult result)
-        {
-            const float thickness = 4;
-
-            const float small_size = 9;
-            const float large_size = 14;
-
-            Anchor = Anchor.Centre;
             Origin = Anchor.Centre;
-
-            Blending = BlendingParameters.Additive;
-
-            int countSmall = 0;
-            int countLarge = 0;
-
-            switch (result)
-            {
-                case HitResult.Meh:
-                    countSmall = 3;
-                    travel *= 0.3f;
-                    break;
-
-                case HitResult.Ok:
-                case HitResult.Good:
-                    countSmall = 4;
-                    travel *= 0.6f;
-                    break;
-
-                case HitResult.Great:
-                case HitResult.Perfect:
-                    countSmall = 4;
-                    countLarge = 4;
-                    break;
-            }
-
-            for (int i = 0; i < countSmall; i++)
-                AddInternal(new RingPiece(thickness) { Size = new Vector2(small_size) });
-
-            for (int i = 0; i < countLarge; i++)
-                AddInternal(new RingPiece(thickness) { Size = new Vector2(large_size) });
         }
 
-        public void PlayAnimation()
+        [BackgroundDependencyLoader]
+        private void load()
         {
-            foreach (var c in InternalChildren)
+            if (Result.IsHit())
             {
-                const float start_position_ratio = 0.3f;
+                AddInternal(ringExplosion = new RingExplosion(Result)
+                {
+                    Colour = colours.ForHitResult(Result),
+                });
+            }
+        }
 
-                float direction = RNG.NextSingle(0, 360);
-                float distance = RNG.NextSingle(travel / 2, travel);
+        protected override SpriteText CreateJudgementText() =>
+            new OsuSpriteText
+            {
+                Anchor = Anchor.Centre,
+                Origin = Anchor.Centre,
+                Blending = BlendingParameters.Additive,
+                Spacing = new Vector2(5, 0),
+                Font = OsuFont.Default.With(size: 20, weight: FontWeight.Bold),
+            };
 
-                c.MoveTo(new Vector2(
-                    MathF.Cos(direction) * distance * start_position_ratio,
-                    MathF.Sin(direction) * distance * start_position_ratio
-                ));
+        /// <summary>
+        /// Plays the default animation for this judgement piece.
+        /// </summary>
+        /// <remarks>
+        /// The base implementation only handles fade (for all result types) and misses.
+        /// Individual rulesets are recommended to implement their appropriate hit animations.
+        /// </remarks>
+        public virtual void PlayAnimation()
+        {
+            if (Result == HitResult.IgnoreMiss || Result == HitResult.LargeTickMiss)
+            {
+                this.RotateTo(-45);
+                this.ScaleTo(1.6f);
+                this.ScaleTo(1.2f, 100, Easing.In);
 
-                c.MoveTo(new Vector2(
-                    MathF.Cos(direction) * distance,
-                    MathF.Sin(direction) * distance
-                ), 600, Easing.OutQuint);
+                this.FadeOutFromOne(400);
+            }
+            else if (Result.IsMiss())
+            {
+                this.FadeOutFromOne(800);
+
+                this.ScaleTo(1.6f);
+                this.ScaleTo(1, 100, Easing.In);
+
+                this.MoveTo(Vector2.Zero);
+                this.MoveToOffset(new Vector2(0, 100), 800, Easing.InQuint);
+
+                this.RotateTo(0);
+                this.RotateTo(40, 800, Easing.InQuint);
+            }
+            else
+            {
+                this.FadeOutFromOne(800);
+
+                JudgementText
+                    .FadeInFromZero(300, Easing.OutQuint)
+                    .ScaleTo(Vector2.One)
+                    .ScaleTo(new Vector2(1.2f), 1800, Easing.OutQuint);
             }
 
-            this.FadeOutFromOne(1000, Easing.OutQuint);
+            ringExplosion?.PlayAnimation();
+        }
+
+        public Drawable? GetAboveHitObjectsProxiedContent() => JudgementText.CreateProxy();
+
+        private partial class RingExplosion : CompositeDrawable
+        {
+            private readonly float travel = 52;
+
+            public RingExplosion(HitResult result)
+            {
+                const float thickness = 4;
+
+                const float small_size = 9;
+                const float large_size = 14;
+
+                Anchor = Anchor.Centre;
+                Origin = Anchor.Centre;
+
+                Blending = BlendingParameters.Additive;
+
+                int countSmall = 0;
+                int countLarge = 0;
+
+                switch (result)
+                {
+                    case HitResult.Meh:
+                        countSmall = 3;
+                        travel *= 0.3f;
+                        break;
+
+                    case HitResult.Ok:
+                    case HitResult.Good:
+                        countSmall = 4;
+                        travel *= 0.6f;
+                        break;
+
+                    case HitResult.Great:
+                    case HitResult.Perfect:
+                        countSmall = 4;
+                        countLarge = 4;
+                        break;
+                }
+
+                for (int i = 0; i < countSmall; i++)
+                    AddInternal(new RingPiece(thickness) { Size = new Vector2(small_size) });
+
+                for (int i = 0; i < countLarge; i++)
+                    AddInternal(new RingPiece(thickness) { Size = new Vector2(large_size) });
+            }
+
+            public void PlayAnimation()
+            {
+                foreach (var c in InternalChildren)
+                {
+                    const float start_position_ratio = 0.3f;
+
+                    float direction = RNG.NextSingle(0, 360);
+                    float distance = RNG.NextSingle(travel / 2, travel);
+
+                    c.MoveTo(new Vector2(
+                        MathF.Cos(direction) * distance * start_position_ratio,
+                        MathF.Sin(direction) * distance * start_position_ratio
+                    ));
+
+                    c.MoveTo(new Vector2(
+                        MathF.Cos(direction) * distance,
+                        MathF.Sin(direction) * distance
+                    ), 600, Easing.OutQuint);
+                }
+
+                this.FadeOutFromOne(1000, Easing.OutQuint);
+            }
         }
     }
 }

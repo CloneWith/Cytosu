@@ -2,7 +2,6 @@
 // See the LICENCE file in the repository root for full licence text.
 
 using System.Collections.Generic;
-using osu.Game.Replays;
 using osu.Game.Rulesets.Cytosu.Replays;
 using osu.Game.Rulesets.Replays;
 using osu.Game.Rulesets.UI;
@@ -11,13 +10,8 @@ using osuTK;
 
 namespace osu.Game.Rulesets.Cytosu.UI
 {
-    public partial class CytosuReplayRecorder : ReplayRecorder<CytosuAction>
+    public partial class CytosuReplayRecorder(Score score) : ReplayRecorder<CytosuAction>(score)
     {
-        public CytosuReplayRecorder(Score score)
-            : base(score)
-        {
-        }
-
         protected override ReplayFrame HandleFrame(Vector2 mousePosition, List<CytosuAction> actions, ReplayFrame previousFrame)
             => new CytosuReplayFrame(Time.Current, mousePosition, actions.ToArray());
     }

@@ -1,6 +1,7 @@
 ﻿// Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the MIT Licence.
 // See the LICENCE file in the repository root for full licence text.
 
+using System.Diagnostics;
 using osu.Framework.Graphics;
 using osu.Framework.Graphics.Containers;
 using osu.Game.Rulesets.UI;
@@ -39,6 +40,7 @@ namespace osu.Game.Rulesets.Cytosu.UI
             {
                 base.Update();
 
+                Debug.Assert(Parent != null, nameof(Parent) + " != null");
                 Scale = new Vector2(Parent.ChildSize.X / 512);
                 Size = Vector2.Divide(Vector2.One, Scale);
             }

@@ -14,16 +14,16 @@ namespace osu.Game.Rulesets.Cytosu
             Origin = Anchor.Centre;
             Anchor = Anchor.Centre;
             RelativeSizeAxes = Axes.Both;
-            Children = new Drawable[]
-            {
+            Children =
+            [
                 new SpriteIcon
                 {
                     Icon = FontAwesome.Regular.DotCircle,
                     Origin = Anchor.Centre,
                     Anchor = Anchor.Centre,
                     RelativeSizeAxes = Axes.Both
-                }
-            };
+                },
+            ];
         }
     }
 }

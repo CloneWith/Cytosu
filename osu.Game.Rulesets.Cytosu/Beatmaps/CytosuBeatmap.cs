@@ -6,7 +6,5 @@ using osu.Game.Rulesets.Cytosu.Objects;
 
 namespace osu.Game.Rulesets.Cytosu.Beatmaps
 {
-    public class CytosuBeatmap : Beatmap<CytosuHitObject>
-    {
-    }
+    public class CytosuBeatmap : Beatmap<CytosuHitObject>;
 }

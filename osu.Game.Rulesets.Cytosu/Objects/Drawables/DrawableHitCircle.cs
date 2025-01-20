@@ -18,9 +18,9 @@ namespace osu.Game.Rulesets.Cytosu.Objects.Drawables
 {
     public partial class DrawableHitCircle : DrawableCytosuHitObject
     {
-        public HitReceptor HitArea;
-        public Drawable RingPiece;
-        public Drawable BodyPiece;
+        public HitReceptor HitArea { get; private set; } = null!;
+        private Drawable ringPiece = null!;
+        private Drawable bodyPiece = null!;
 
         public override double LifetimeStart
         {
@@ -28,7 +28,7 @@ namespace osu.Game.Rulesets.Cytosu.Objects.Drawables
             set
             {
                 base.LifetimeStart = value;
-                BodyPiece.LifetimeStart = value;
+                bodyPiece.LifetimeStart = value;
             }
         }
 
@@ -38,7 +38,7 @@ namespace osu.Game.Rulesets.Cytosu.Objects.Drawables
             set
             {
                 base.LifetimeEnd = value;
-                BodyPiece.LifetimeEnd = value;
+                bodyPiece.LifetimeEnd = value;
             }
         }
 
@@ -53,16 +53,15 @@ namespace osu.Game.Rulesets.Cytosu.Objects.Drawables
             Origin = Anchor.Centre;
             Position = HitObject.Position;
 
-            AddRangeInternal(new Drawable[]
-            {
+            AddRangeInternal([
                 new Container
                 {
                     RelativeSizeAxes = Axes.Both,
                     Origin = Anchor.Centre,
                     Anchor = Anchor.Centre,
                     Scale = new Vector2(0.75f),
-                    Children = new[]
-                    {
+                    Children =
+                    [
                         HitArea = new HitReceptor
                         {
                             Hit = () =>
@@ -79,17 +78,17 @@ namespace osu.Game.Rulesets.Cytosu.Objects.Drawables
                             RelativeSizeAxes = Axes.Both,
                             Anchor = Anchor.Centre,
                             Origin = Anchor.Centre,
-                            Margin = new MarginPadding(Piece.RingPiece.RING_THICKNESS),
-                            Child = BodyPiece = new BodyPiece
+                            Margin = new MarginPadding(RingPiece.RING_THICKNESS),
+                            Child = bodyPiece = new BodyPiece
                             {
                                 Alpha = 0,
-                                Scale = Vector2.Zero
+                                Scale = Vector2.Zero,
                             },
                         },
-                        RingPiece = new RingPiece()
-                    }
-                }
-            });
+                        ringPiece = new RingPiece(),
+                    ],
+                },
+            ]);
 
             Size = HitArea.DrawSize;
 
@@ -126,10 +125,10 @@ namespace osu.Game.Rulesets.Cytosu.Objects.Drawables
             using (BeginAbsoluteSequence(HitObject.StartTime - HitObject.TimePreempt))
             {
                 this.ScaleTo(0.5f).Then().ScaleTo(1, HitObject.TimePreempt, Easing.OutSine);
-                RingPiece.FadeInFromZero(HitObject.TimePreempt / 2);
+                ringPiece.FadeInFromZero(HitObject.TimePreempt / 2);
 
-                BodyPiece.FadeIn(Math.Min(HitObject.TimeFadeIn * 2, HitObject.TimePreempt));
-                BodyPiece.ScaleTo(1f, HitObject.TimePreempt);
+                bodyPiece.FadeIn(Math.Min(HitObject.TimeFadeIn * 2, HitObject.TimePreempt));
+                bodyPiece.ScaleTo(1f, HitObject.TimePreempt);
             }
         }
 
@@ -154,10 +153,10 @@ namespace osu.Game.Rulesets.Cytosu.Objects.Drawables
                     break;
 
                 case ArmedState.Hit:
-                    RingPiece
+                    ringPiece
                         .ScaleTo(1.5f, 200, Easing.InCubic)
                         .FadeOut(200);
-                    BodyPiece.FadeOut(200);
+                    bodyPiece.FadeOut(200);
 
                     this.Delay(800).FadeOut();
                     break;
@@ -168,7 +167,7 @@ namespace osu.Game.Rulesets.Cytosu.Objects.Drawables
         {
             public override bool HandlePositionalInput => true;
 
-            public Func<bool> Hit;
+            public Func<bool>? Hit;
 
             public CytosuAction? HitAction;
 

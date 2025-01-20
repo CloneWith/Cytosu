@@ -18,7 +18,7 @@ namespace osu.Game.Rulesets.Cytosu.UI
         [BackgroundDependencyLoader(true)]
         private void load(CytosuRulesetConfigManager rulesetConfig)
         {
-            rulesetConfig?.BindWith(CytosuRulesetSetting.ShowCursor, showCursor);
+            rulesetConfig.BindWith(CytosuRulesetSetting.ShowCursor, showCursor);
         }
 
         protected override Drawable CreateCursor() => new CytosuCursor();

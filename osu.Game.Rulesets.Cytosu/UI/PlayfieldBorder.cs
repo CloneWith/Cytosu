@@ -15,8 +15,8 @@ namespace osu.Game.Rulesets.Cytosu.UI
         {
             RelativeSizeAxes = Axes.Both;
 
-            InternalChildren = new Drawable[]
-            {
+            InternalChildren =
+            [
                 new Line(Direction.Horizontal)
                 {
                     Anchor = Anchor.TopLeft,
@@ -56,30 +56,23 @@ namespace osu.Game.Rulesets.Cytosu.UI
                 {
                     Anchor = Anchor.BottomRight,
                     Origin = Anchor.BottomRight,
-                }
-            };
+                },
+            ];
         }
 
         private partial class Line : Box
         {
-            private readonly Direction direction;
-
             public Line(Direction direction)
             {
-                this.direction = direction;
 
                 Colour = Color4.White;
 
-                switch (direction)
+                Size = direction switch
                 {
-                    case Direction.Horizontal:
-                        Size = new Vector2(25, 2);
-                        break;
-
-                    case Direction.Vertical:
-                        Size = new Vector2(2, 25);
-                        break;
-                }
+                    Direction.Horizontal => new Vector2(25, 2),
+                    Direction.Vertical => new Vector2(2, 25),
+                    _ => Size,
+                };
             }
         }
     }

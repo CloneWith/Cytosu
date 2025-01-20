@@ -14,8 +14,8 @@ namespace osu.Game.Rulesets.Cytosu.Objects.Drawables.Piece
 {
     public partial class HoldRingProgressPiece : CircularContainer
     {
-        public CircularProgress AutoProgress { get; private set; }
-        public CircularProgress Progress { get; private set; }
+        public CircularProgress AutoProgress { get; private set; } = null!;
+        public CircularProgress Progress { get; private set; } = null!;
 
         [BackgroundDependencyLoader]
         private void load(OsuColour colour)
@@ -31,8 +31,7 @@ namespace osu.Game.Rulesets.Cytosu.Objects.Drawables.Piece
                 Colour = Color4.White,
             };
 
-            AddRangeInternal(new Drawable[]
-            {
+            AddRangeInternal([
                 AutoProgress = new CircularProgress
                 {
                     Anchor = Anchor.Centre,
@@ -41,7 +40,7 @@ namespace osu.Game.Rulesets.Cytosu.Objects.Drawables.Piece
                     Size = new Vector2(35),
                     Progress = 0,
                     Colour = Color4.Black,
-                    Alpha = 0.45f
+                    Alpha = 0.45f,
                 },
                 Progress = new CircularProgress
                 {
@@ -50,9 +49,9 @@ namespace osu.Game.Rulesets.Cytosu.Objects.Drawables.Piece
                     InnerRadius = 2f,
                     Size = new Vector2(35),
                     Progress = 0,
-                    Colour = colour.YellowDark
-                }
-            });
+                    Colour = colour.YellowDark,
+                },
+            ]);
         }
     }
 }

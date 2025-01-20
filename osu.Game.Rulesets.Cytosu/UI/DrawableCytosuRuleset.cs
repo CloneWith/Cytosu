@@ -19,13 +19,9 @@ using osuTK;
 namespace osu.Game.Rulesets.Cytosu.UI
 {
     [Cached]
-    public partial class DrawableCytosuRuleset : DrawableRuleset<CytosuHitObject>
+    public partial class DrawableCytosuRuleset(CytosuRuleset ruleset, IBeatmap beatmap, IReadOnlyList<Mod>? mods = null)
+        : DrawableRuleset<CytosuHitObject>(ruleset, beatmap, mods)
     {
-        public DrawableCytosuRuleset(CytosuRuleset ruleset, IBeatmap beatmap, IReadOnlyList<Mod> mods = null)
-            : base(ruleset, beatmap, mods)
-        {
-        }
-
         public override bool ReceivePositionalInputAt(Vector2 screenSpacePos) => true;
 
         public override DrawableHitObject<CytosuHitObject> CreateDrawableRepresentation(CytosuHitObject h)

@@ -26,7 +26,7 @@ namespace osu.Game.Rulesets.Cytosu.Replays
             Actions.AddRange(actions);
         }
 
-        public void FromLegacy(LegacyReplayFrame currentFrame, IBeatmap beatmap, ReplayFrame lastFrame = null)
+        public void FromLegacy(LegacyReplayFrame currentFrame, IBeatmap beatmap, ReplayFrame? lastFrame = null)
         {
             Position = currentFrame.Position;
             if (currentFrame.MouseLeft) Actions.Add(CytosuAction.Action1);

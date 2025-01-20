@@ -7,7 +7,6 @@ using System.Threading;
 using osu.Framework.Extensions.IEnumerableExtensions;
 using osu.Game.Beatmaps;
 using osu.Game.Rulesets.Cytosu.Objects;
-using osu.Game.Rulesets.Cytosu.UI;
 using osu.Game.Rulesets.Cytosu.Utils;
 using osu.Game.Rulesets.Objects;
 using osu.Game.Rulesets.Objects.Types;

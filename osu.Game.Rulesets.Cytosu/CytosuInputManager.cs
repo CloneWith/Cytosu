@@ -9,7 +9,7 @@ using osu.Game.Rulesets.UI;
 
 namespace osu.Game.Rulesets.Cytosu
 {
-    public partial class CytosuInputManager : RulesetInputManager<CytosuAction>
+    public partial class CytosuInputManager(RulesetInfo ruleset) : RulesetInputManager<CytosuAction>(ruleset, 0, SimultaneousBindingMode.Unique)
     {
         public IEnumerable<CytosuAction> PressedActions => KeyBindingContainer.PressedActions;
 
@@ -21,28 +21,17 @@ namespace osu.Game.Rulesets.Cytosu
         protected override KeyBindingContainer<CytosuAction> CreateKeyBindingContainer(RulesetInfo ruleset, int variant, SimultaneousBindingMode unique)
             => new CytosuKeyBindingContainer(ruleset, variant, unique);
 
-        public CytosuInputManager(RulesetInfo ruleset)
-            : base(ruleset, 0, SimultaneousBindingMode.Unique)
-        {
-        }
-
-        public bool AllowUserCursorMovement { get; set; } = true;
-
         protected override bool Handle(UIEvent e)
         {
-            if (e is MouseMoveEvent && !AllowUserCursorMovement) return false;
+            if (e is MouseMoveEvent) return false;
 
             return base.Handle(e);
         }
 
-        private partial class CytosuKeyBindingContainer : RulesetKeyBindingContainer
+        private partial class CytosuKeyBindingContainer(RulesetInfo ruleset, int variant, SimultaneousBindingMode unique)
+            : RulesetKeyBindingContainer(ruleset, variant, unique)
         {
             public bool AllowUserPresses = true;
-
-            public CytosuKeyBindingContainer(RulesetInfo ruleset, int variant, SimultaneousBindingMode unique)
-                : base(ruleset, variant, unique)
-            {
-            }
 
             protected override bool Handle(UIEvent e)
             {

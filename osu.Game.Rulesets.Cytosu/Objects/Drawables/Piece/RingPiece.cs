@@ -23,7 +23,7 @@ namespace osu.Game.Rulesets.Cytosu.Objects.Drawables.Piece
             Anchor = Anchor.Centre;
             Origin = Anchor.Centre;
 
-            AddRangeInternal(new Drawable[] {
+            AddRangeInternal([
                 new CircularContainer
                 {
                     RelativeSizeAxes = Axes.Both,
@@ -36,8 +36,8 @@ namespace osu.Game.Rulesets.Cytosu.Objects.Drawables.Piece
                     {
                         RelativeSizeAxes = Axes.Both,
                         Alpha = 0,
-                        AlwaysPresent = true
-                    }
+                        AlwaysPresent = true,
+                    },
                 },
                 new Circle
                 {
@@ -45,9 +45,9 @@ namespace osu.Game.Rulesets.Cytosu.Objects.Drawables.Piece
                     Masking = true,
                     Colour = Color4.White,
                     Anchor = Anchor.Centre,
-                    Origin = Anchor.Centre
+                    Origin = Anchor.Centre,
                 },
-            });
+            ]);
         }
     }
 }

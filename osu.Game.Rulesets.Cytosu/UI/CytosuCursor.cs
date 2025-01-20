@@ -33,8 +33,8 @@ namespace osu.Game.Rulesets.Cytosu.UI
                     Origin = Anchor.Centre,
                     Anchor = Anchor.Centre,
                     RelativeSizeAxes = Axes.Both,
-                    Children = new Drawable[]
-                    {
+                    Children =
+                    [
                         new CircularContainer
                         {
                             Anchor = Anchor.Centre,
@@ -43,15 +43,15 @@ namespace osu.Game.Rulesets.Cytosu.UI
                             Masking = true,
                             BorderThickness = default_size / 4,
                             BorderColour = Color4.White,
-                            Children = new Drawable[]
-                            {
+                            Children =
+                            [
                                 new Box
                                 {
                                     RelativeSizeAxes = Axes.Both,
                                     Alpha = 0,
                                     AlwaysPresent = true,
                                 },
-                            },
+                            ],
                         },
                         new Circle
                         {
@@ -61,8 +61,8 @@ namespace osu.Game.Rulesets.Cytosu.UI
                             Scale = new Vector2(0.20f),
                             Colour = Color4.White,
                         },
-                    }
-                }
+                    ],
+                },
             };
         }
     }

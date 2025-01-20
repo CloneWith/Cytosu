@@ -22,19 +22,18 @@ namespace osu.Game.Rulesets.Cytosu.Tests.Components
             Clock = new FramedClock();
             Clock.ProcessFrame();
 
-            AddRange(new Drawable[]
-            {
+            AddRange([
                 musicController,
                 new ScanLine
                 {
-                    RelativeSizeAxes = Axes.Both
+                    RelativeSizeAxes = Axes.Both,
                 },
                 np = new NowPlayingOverlay
                 {
                     Origin = Anchor.TopRight,
                     Anchor = Anchor.TopRight,
-                }
-            });
+                },
+            ]);
         }
 
         protected override void LoadComplete()
