@@ -12,9 +12,12 @@ namespace osu.Game.Rulesets.Cytosu.Objects.Drawables.Piece
     public partial class RingPiece : CompositeDrawable
     {
         public const float RING_THICKNESS = 12f;
+        public readonly float RingThickness;
 
-        public RingPiece()
+        public RingPiece(float thickness = 12f)
         {
+            RingThickness = thickness;
+            
             RelativeSizeAxes = Axes.Both;
             Size = new Vector2(1f);
             Anchor = Anchor.Centre;
@@ -25,7 +28,7 @@ namespace osu.Game.Rulesets.Cytosu.Objects.Drawables.Piece
                 {
                     RelativeSizeAxes = Axes.Both,
                     Masking = true,
-                    BorderThickness = RING_THICKNESS,
+                    BorderThickness = RingThickness,
                     BorderColour = Color4.White,
                     Anchor = Anchor.Centre,
                     Origin = Anchor.Centre,

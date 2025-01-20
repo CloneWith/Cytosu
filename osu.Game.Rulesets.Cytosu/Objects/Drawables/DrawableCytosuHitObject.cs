@@ -5,14 +5,12 @@ using osu.Game.Rulesets.Objects.Drawables;
 
 namespace osu.Game.Rulesets.Cytosu.Objects.Drawables
 {
-    public partial class DrawableCytosuHitObject : DrawableHitObject<CytosuHitObject>
+    public partial class DrawableCytosuHitObject(CytosuHitObject hitObject)
+        : DrawableHitObject<CytosuHitObject>(hitObject)
     {
         public override bool HandlePositionalInput => true;
 
         public bool ShouldPerfectlyJudged { get; set; }
-
-        public DrawableCytosuHitObject(CytosuHitObject hitObject)
-            : base(hitObject) { }
 
         protected sealed override double InitialLifetimeOffset => HitObject.TimePreempt;
 

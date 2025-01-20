@@ -3,14 +3,6 @@
 
 using osu.Game.Rulesets.Scoring;
 
-namespace osu.Game.Rulesets.Cytosu.Scoring
-{
-    public partial class CytosuScoreProcessor : ScoreProcessor
-    {
-        public CytosuScoreProcessor() : base(new CytosuRuleset())
-        {
-        }
-        protected double DefaultComboPortion => 0.5;
-        protected double DefaultAccuracyPortion => 0.5;
-    }
-}
+namespace osu.Game.Rulesets.Cytosu.Scoring;
+
+public partial class CytosuScoreProcessor() : ScoreProcessor(new CytosuRuleset());

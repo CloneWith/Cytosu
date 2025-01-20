@@ -18,7 +18,7 @@ namespace osu.Game.Rulesets.Cytosu.Objects
 
         public double Duration { get; set; }
 
-        protected override HitWindows CreateHitWindows() => new HitWindows.EmptyHitWindows();
+        protected override HitWindows CreateHitWindows() => HitWindows.Empty;
 
         public override Judgement CreateJudgement() => new CytosuJudgement();
     }

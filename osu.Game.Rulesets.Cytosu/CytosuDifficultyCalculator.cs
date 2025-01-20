@@ -12,13 +12,9 @@ using osu.Game.Rulesets.Mods;
 
 namespace osu.Game.Rulesets.Cytosu
 {
-    public class CytosuDifficultyCalculator : DifficultyCalculator
+    public class CytosuDifficultyCalculator(IRulesetInfo ruleset, IWorkingBeatmap beatmap)
+        : DifficultyCalculator(ruleset, beatmap)
     {
-        public CytosuDifficultyCalculator(IRulesetInfo ruleset, IWorkingBeatmap beatmap)
-            : base(ruleset, beatmap)
-        {
-        }
-
         protected override DifficultyAttributes CreateDifficultyAttributes(IBeatmap beatmap, Mod[] mods, Skill[] skills, double clockRate)
         {
             return new DifficultyAttributes(mods, 0);
