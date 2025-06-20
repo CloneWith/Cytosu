@@ -107,7 +107,7 @@ namespace osu.Game.Rulesets.Cytosu.Objects.Drawables
             if (userTriggered || Time.Current < ((IHasDuration)HitObject)?.EndTime)
                 return;
 
-            ApplyResult(result =>
+            ApplyResult((result, _) =>
             {
                 if (progression >= .95)
                     result.Type = HitResult.Perfect;
