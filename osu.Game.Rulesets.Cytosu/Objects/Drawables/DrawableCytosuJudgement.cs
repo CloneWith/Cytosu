@@ -46,7 +46,7 @@ namespace osu.Game.Rulesets.Cytosu.Objects.Drawables
 
             Position = Parent!.ToLocalSpace(screenSpacePosition);
         }
-        
+
         protected override Drawable CreateDefaultJudgement(HitResult result) => new CytosuJudgementPiece(result);
     }
 }

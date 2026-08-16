@@ -1,7 +1,6 @@
 ﻿// Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the MIT Licence.
 // See the LICENCE file in the repository root for full licence text.
 
-using System;
 using System.Collections.Generic;
 using osu.Framework.Graphics;
 using osu.Framework.Input.Bindings;
@@ -71,7 +70,7 @@ namespace osu.Game.Rulesets.Cytosu
                     ];
 
                 default:
-                    return Array.Empty<Mod>();
+                    return [];
             }
         }
 
@@ -85,17 +84,16 @@ namespace osu.Game.Rulesets.Cytosu
             new KeyBinding(InputKey.MouseRight, CytosuAction.Action2),
         ];
 
-        protected override IEnumerable<HitResult> GetValidHitResults()
-        {
-            return
-            [
-                HitResult.Meh,
-                HitResult.Good,
-                HitResult.Great,
-                HitResult.Perfect,
-            ];
-        }
+        public override IEnumerable<HitResult> GetValidHitResults() =>
+        [
+            HitResult.Meh,
+            HitResult.Good,
+            HitResult.Great,
+            HitResult.Perfect,
+        ];
 
         public override Drawable CreateIcon() => new CytosuIcon();
+
+        public override string RulesetAPIVersionSupported => CURRENT_RULESET_API_VERSION;
     }
 }

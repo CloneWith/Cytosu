@@ -69,7 +69,7 @@ namespace osu.Game.Rulesets.Cytosu.Objects.Drawables
         private readonly Bindable<bool> isActivated = new BindableBool();
         private double holdDuration;
 
-        private CytosuInputManager InputManager => (GetContainingInputManager() as CytosuInputManager)!;
+        private CytosuInputManager inputManager => (GetContainingInputManager() as CytosuInputManager)!;
 
         protected override void Update()
         {
@@ -77,7 +77,7 @@ namespace osu.Game.Rulesets.Cytosu.Objects.Drawables
 
             isActivated.Value = Time.Current >= HitObject.StartTime
                                 && Time.Current <= ((IHasDuration)HitObject)?.EndTime
-                                && (InputManager.PressedActions.Any() && IsHovered || ShouldPerfectlyJudged);
+                                && (inputManager.PressedActions.Any() && IsHovered || ShouldPerfectlyJudged);
 
             if (Result.HasResult) return;
 
@@ -117,7 +117,7 @@ namespace osu.Game.Rulesets.Cytosu.Objects.Drawables
                     result.Type = HitResult.Good;
                 else if (progression >= .5)
                     result.Type = HitResult.Meh;
-                else if (Time.Current >= ((IHasDuration)HitObject)?.EndTime)
+                else if (HitObject is IHasDuration obj && Time.Current >= obj.EndTime)
                     result.Type = HitResult.Miss;
             });
         }

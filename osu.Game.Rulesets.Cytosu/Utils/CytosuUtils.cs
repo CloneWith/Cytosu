@@ -11,7 +11,7 @@ namespace osu.Game.Rulesets.Cytosu.Utils
         public static float GetProgressionFromBeatmap(IBeatmap beatmap, double time)
         {
             var timingPoint = beatmap.ControlPointInfo.TimingPointAt(time);
-            var timeSinceTimingPoint = time - timingPoint.Time;
+            double timeSinceTimingPoint = time - timingPoint.Time;
 
             float beatProgression = (float)(timeSinceTimingPoint % timingPoint.BeatLength / timingPoint.BeatLength);
             int beatIndex = (int)Math.Round((timeSinceTimingPoint - timeSinceTimingPoint % timingPoint.BeatLength) / timingPoint.BeatLength);

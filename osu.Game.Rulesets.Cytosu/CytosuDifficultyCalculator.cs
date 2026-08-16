@@ -13,17 +13,11 @@ namespace osu.Game.Rulesets.Cytosu
     public class CytosuDifficultyCalculator(IRulesetInfo ruleset, IWorkingBeatmap beatmap)
         : DifficultyCalculator(ruleset, beatmap)
     {
-        protected override DifficultyAttributes CreateDifficultyAttributes(IBeatmap beatmap, Mod[] mods, Skill[] skills, double clockRate)
-        {
-            return new DifficultyAttributes(mods, 0);
-        }
+        protected override DifficultyAttributes CreateDifficultyAttributes(IBeatmap beatmap, Mod[] mods, Skill[] skills)
+            => new DifficultyAttributes(mods, 0);
 
-        protected override IEnumerable<DifficultyHitObject> CreateDifficultyHitObjects(IBeatmap beatmap, double clockRate) => [];
+        protected override IEnumerable<DifficultyHitObject> CreateDifficultyHitObjects(IBeatmap beatmap, Mod[] mods) => [];
 
-        protected override Skill[] CreateSkills(IBeatmap beatmap, Mod[] mods, double clockRate)
-        {
-            return [];
-
-        }
+        protected override Skill[] CreateSkills(IBeatmap beatmap, Mod[] mods) => [];
     }
 }

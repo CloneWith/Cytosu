@@ -2,8 +2,5 @@
 
 namespace osu.Game.Rulesets.Cytosu.Mods
 {
-    public class CytosuModHalfTime : ModHalfTime
-    {
-        public override double ScoreMultiplier => 1.0;
-    }
+    public class CytosuModHalfTime : ModHalfTime;
 }

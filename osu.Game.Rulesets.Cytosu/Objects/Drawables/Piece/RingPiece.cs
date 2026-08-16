@@ -17,7 +17,7 @@ namespace osu.Game.Rulesets.Cytosu.Objects.Drawables.Piece
         public RingPiece(float thickness = 12f)
         {
             RingThickness = thickness;
-            
+
             RelativeSizeAxes = Axes.Both;
             Size = new Vector2(1f);
             Anchor = Anchor.Centre;

@@ -24,19 +24,12 @@ namespace osu.Game.Rulesets.Cytosu.UI
     {
         public override bool ReceivePositionalInputAt(Vector2 screenSpacePos) => true;
 
-        public override DrawableHitObject<CytosuHitObject> CreateDrawableRepresentation(CytosuHitObject h)
+        public override DrawableHitObject<CytosuHitObject>? CreateDrawableRepresentation(CytosuHitObject h) => h switch
         {
-            switch (h)
-            {
-                case HitCircle basic:
-                    return new DrawableHitCircle(basic);
-
-                case Hold hold:
-                    return new DrawableHold(hold);
-            }
-
-            return null;
-        }
+            HitCircle basic => new DrawableHitCircle(basic),
+            Hold hold => new DrawableHold(hold),
+            _ => null,
+        };
 
         public override PlayfieldAdjustmentContainer CreatePlayfieldAdjustmentContainer() => new CytosuPlayfieldAdjustmentContainer();
 
@@ -46,6 +39,6 @@ namespace osu.Game.Rulesets.Cytosu.UI
 
         protected override ReplayRecorder CreateReplayRecorder(Score score) => new CytosuReplayRecorder(score);
 
-        protected override PassThroughInputManager CreateInputManager() => new CytosuInputManager(Ruleset?.RulesetInfo);
+        protected override PassThroughInputManager CreateInputManager() => new CytosuInputManager(Ruleset.RulesetInfo);
     }
 }

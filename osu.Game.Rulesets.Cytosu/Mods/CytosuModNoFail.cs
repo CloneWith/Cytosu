@@ -5,7 +5,5 @@ using osu.Game.Rulesets.Mods;
 
 namespace osu.Game.Rulesets.Cytosu.Mods
 {
-    public class CytosuModNoFail : ModNoFail
-    {
-    }
+    public class CytosuModNoFail : ModNoFail;
 }
